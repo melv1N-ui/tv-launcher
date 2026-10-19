@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Bildschirm 1920x1080 bei 320 dpi = 960x540 dp -->
+    <dimen name="side">64dp</dimen>
+    <!-- Abstand zwischen zwei Kacheln; jede Zelle hat links und rechts die Hälfte -->
+    <dimen name="half_gap">12dp</dimen>
+    <dimen name="tile_h">104dp</dimen>
+    <dimen name="tile_radius">12dp</dimen>
+    <dimen name="row_gap">18dp</dimen>
+
+    <!-- Dock: hellere, abgerundete Leiste am unteren Rand -->
+    <dimen name="band_h">176dp</dimen>
+    <dimen name="band_inset">6dp</dimen>
+    <dimen name="band_bottom">26dp</dimen>
+    <dimen name="band_pad_top">22dp</dimen>
+
+    <dimen name="pill_h">40dp</dimen>
+</resources>

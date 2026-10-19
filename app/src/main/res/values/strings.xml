@@ -1,4 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">TV Launcher</string>
+    <string name="inputs">Eingänge</string>
+    <string name="wifi">WLAN</string>
+    <string name="ethernet">Ethernet</string>
+    <string name="offline">Offline</string>
+    <string name="settings">Einstellungen</string>
+    <string name="live_tv">Live TV</string>
+    <string name="av">AV</string>
+    <string name="no_inputs">Keine Eingänge gefunden</string>
+    <string name="cannot_start">%1$s lässt sich nicht starten</string>
 </resources>

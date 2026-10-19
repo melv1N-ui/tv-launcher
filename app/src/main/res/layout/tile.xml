@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Eine Zelle im Dock oder im Raster: Banner plus Name, der nur bei Fokus erscheint -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:clipChildren="false"
+    android:clipToPadding="false"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/row_gap">
+
+    <FrameLayout
+        android:id="@+id/frame"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/tile_h"
+        android:layout_marginStart="@dimen/half_gap"
+        android:layout_marginEnd="@dimen/half_gap"
+        android:background="@drawable/tile_bg">
+
+        <ImageView
+            android:id="@+id/banner"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:importantForAccessibility="no"
+            android:scaleType="centerCrop" />
+
+        <ImageView
+            android:id="@+id/icon"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:layout_gravity="center"
+            android:importantForAccessibility="no"
+            android:scaleType="fitCenter" />
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/half_gap"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="@dimen/half_gap"
+        android:alpha="0"
+        android:ellipsize="end"
+        android:singleLine="true"
+        android:textColor="#F2FFFFFF"
+        android:textSize="14sp" />
+</LinearLayout>

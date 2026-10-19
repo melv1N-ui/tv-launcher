@@ -19,12 +19,11 @@ jobs:
           distribution: temurin
           java-version: '17'
 
+      # Gradle-Version kommt aus dem Wrapper (gradle/wrapper/gradle-wrapper.properties)
       - uses: gradle/actions/setup-gradle@v4
-        with:
-          gradle-version: '8.9'
 
       - name: APK bauen
-        run: gradle --no-daemon :app:assembleRelease
+        run: ./gradlew --no-daemon :app:assembleRelease
 
       - name: APK umbenennen
         run: cp app/build/outputs/apk/release/app-release.apk tv-launcher.apk
@@ -37,7 +36,7 @@ jobs:
       - name: Als Release veröffentlichen
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: v0.1.${{ github.run_number }}
-          name: TV Launcher 0.1.${{ github.run_number }}
+          tag_name: v0.2.${{ github.run_number }}
+          name: TV Launcher 0.2.${{ github.run_number }}
           files: tv-launcher.apk
           make_latest: true

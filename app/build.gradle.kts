@@ -1,11 +1,11 @@
 plugins {
     id("com.android.application")
-    id("org.jetbrains.kotlin.android")
-    id("org.jetbrains.kotlin.plugin.compose")
 }
 
-// Auf GitHub Actions steigt die Versionsnummer mit jedem Build, damit Updates per "adb install -r" sauber durchgehen.
-val buildNumber = System.getenv("GITHUB_RUN_NUMBER")?.toIntOrNull() ?: 1
+// Versionscode = Minuten seit 2025-01-01. Steigt dadurch lokal wie auf GitHub Actions immer,
+// sodass jede neue APK ein Update der vorherigen ist, egal wo sie gebaut wurde.
+val versionMinutes = (System.currentTimeMillis() / 60_000L - 28_928_160L).toInt()
+val buildLabel = System.getenv("GITHUB_RUN_NUMBER") ?: "lokal"
 
 android {
     namespace = "de.melvin.tvlauncher"
@@ -13,10 +13,11 @@ android {
 
     defaultConfig {
         applicationId = "de.melvin.tvlauncher"
-        minSdk = 26
+        // Philips 55PUS8106 läuft mit Android 11 (API 30)
+        minSdk = 30
         targetSdk = 34
-        versionCode = buildNumber
-        versionName = "0.1.$buildNumber"
+        versionCode = versionMinutes
+        versionName = "0.2.$buildLabel"
     }
 
     signingConfigs {
@@ -45,14 +46,6 @@ android {
         targetCompatibility = JavaVersion.VERSION_17
     }
 
-    kotlinOptions {
-        jvmTarget = "17"
-    }
-
-    buildFeatures {
-        compose = true
-    }
-
     lint {
         abortOnError = false
         checkReleaseBuilds = false
@@ -60,13 +53,6 @@ android {
 }
 
 dependencies {
-    val composeBom = platform("androidx.compose:compose-bom:2024.09.03")
-    implementation(composeBom)
-    implementation("androidx.compose.ui:ui")
-    implementation("androidx.compose.ui:ui-graphics")
-    implementation("androidx.compose.foundation:foundation")
-    implementation("androidx.compose.material3:material3")
-    implementation("androidx.compose.material:material-icons-core")
-    implementation("androidx.activity:activity-compose:1.9.2")
-    implementation("androidx.core:core-ktx:1.13.1")
+    implementation("androidx.recyclerview:recyclerview:1.3.2")
+    implementation("androidx.dynamicanimation:dynamicanimation:1.0.0")
 }

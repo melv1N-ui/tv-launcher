@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black">
+
+    <!-- Optionales Hintergrundbild (wallpaper.jpg, siehe README). Ohne Datei bleibt alles schwarz. -->
+    <ImageView
+        android:id="@+id/wallpaper"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:alpha="0.45"
+        android:importantForAccessibility="no"
+        android:scaleType="centerCrop"
+        android:visibility="gone" />
+
+    <de.melvin.tvlauncher.PageHost
+        android:id="@+id/host"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!-- Die ganze Seite; scrollt per translationY, wenn der Fokus ins App-Raster wandert -->
+        <FrameLayout
+            android:id="@+id/page"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clipChildren="false">
+
+            <LinearLayout
+                android:id="@+id/content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clipChildren="false"
+                android:orientation="vertical">
+
+                <!-- Höhe wird im Code gesetzt: Bildschirmhöhe minus Dock -->
+                <FrameLayout
+                    android:id="@+id/header"
+                    android:layout_width="match_parent"
+                    android:layout_height="356dp"
+                    android:clipChildren="false">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/side"
+                        android:layout_marginTop="38dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/greeting"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="#A6FFFFFF"
+                            android:textSize="16sp" />
+
+                        <TextView
+                            android:id="@+id/clock"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="-6dp"
+                            android:includeFontPadding="false"
+                            android:textColor="#FFFFFFFF"
+                            android:textSize="76sp" />
+
+                        <TextView
+                            android:id="@+id/date"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="#A6FFFFFF"
+                            android:textSize="16sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/pills"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="top|end"
+                        android:layout_marginTop="44dp"
+                        android:layout_marginEnd="@dimen/side"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:id="@+id/pill_inputs"
+                            style="@style/Pill">
+
+                            <ImageView
+                                style="@style/PillIcon"
+                                android:src="@drawable/ic_input" />
+
+                            <TextView
+                                android:id="@+id/pill_inputs_text"
+                                style="@style/PillText"
+                                android:text="@string/inputs" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/pill_wifi"
+                            style="@style/Pill"
+                            android:layout_marginStart="12dp">
+
+                            <ImageView
+                                android:id="@+id/pill_wifi_icon"
+                                style="@style/PillIcon"
+                                android:src="@drawable/ic_wifi" />
+
+                            <TextView
+                                android:id="@+id/pill_wifi_text"
+                                style="@style/PillText"
+                                android:maxWidth="200dp"
+                                android:text="@string/wifi" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/pill_settings"
+                            style="@style/Pill"
+                            android:layout_width="@dimen/pill_h"
+                            android:layout_marginStart="12dp"
+                            android:gravity="center"
+                            android:paddingStart="0dp"
+                            android:paddingEnd="0dp">
+
+                            <ImageView
+                                style="@style/PillIcon"
+                                android:layout_marginEnd="0dp"
+                                android:contentDescription="@string/settings"
+                                android:src="@drawable/ic_settings" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <!-- Farbiges Leuchten hinter dem Namen der fokussierten Dock-App -->
+                    <!-- Kreis mit radialem Verlauf, im Code auf eine flache Ellipse gestaucht;
+                         der Verlauf endet am Rand, deshalb gibt es keine harten Kanten -->
+                    <View
+                        android:id="@+id/glow"
+                        android:layout_width="600dp"
+                        android:layout_height="600dp"
+                        android:layout_gravity="bottom|start"
+                        android:layout_marginStart="-100dp"
+                        android:layout_marginBottom="-258dp" />
+
+                    <TextView
+                        android:id="@+id/title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom|start"
+                        android:layout_marginStart="@dimen/side"
+                        android:layout_marginBottom="14dp"
+                        android:includeFontPadding="false"
+                        android:singleLine="true"
+                        android:textColor="#F2FFFFFF"
+                        android:textSize="46sp" />
+                </FrameLayout>
+
+                <FrameLayout
+                    android:id="@+id/band"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/band_h"
+                    android:layout_marginStart="58dp"
+                    android:layout_marginEnd="58dp"
+                    android:background="@drawable/dock_band"
+                    android:clipChildren="false"
+                    android:paddingStart="@dimen/band_inset"
+                    android:paddingTop="@dimen/band_pad_top"
+                    android:paddingEnd="@dimen/band_inset">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/dock"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:clipChildren="false"
+                        android:clipToPadding="false"
+                        android:overScrollMode="never" />
+                </FrameLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/grid"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/side"
+                    android:layout_marginTop="44dp"
+                    android:layout_marginEnd="@dimen/side"
+                    android:clipChildren="false"
+                    android:clipToPadding="false"
+                    android:overScrollMode="never"
+                    android:paddingBottom="48dp" />
+            </LinearLayout>
+
+            <!-- Das eine Glas-Highlight, das von Kachel zu Kachel federt -->
+            <de.melvin.tvlauncher.GlassHighlight
+                android:id="@+id/highlight"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </FrameLayout>
+    </de.melvin.tvlauncher.PageHost>
+
+    <!-- Ebene für das Eingänge-Dropdown -->
+    <FrameLayout
+        android:id="@+id/menu_layer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone" />
+</FrameLayout>

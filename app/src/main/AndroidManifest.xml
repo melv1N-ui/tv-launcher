@@ -8,19 +8,18 @@
         android:name="android.hardware.touchscreen"
         android:required="false" />
 
-    <!-- Damit der Launcher die installierten Apps sehen und starten darf -->
+    <!-- Verbindungsart und Signalstärke für die WLAN-Pille. Den Netzwerknamen (SSID) gibt Android 11
+         nur mit eingeschaltetem Standort heraus, und den koppelt Google an seine Datensammlung;
+         deshalb zeigt die Pille bewusst nur "WLAN" plus Signalstärke. -->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <!-- Ab Android 11 sieht eine App fremde Apps nur, wenn sie sie hier anmeldet.
+         Ohne LEANBACK_LAUNCHER bliebe das App-Raster leer. -->
     <queries>
         <intent>
             <action android:name="android.intent.action.MAIN" />
             <category android:name="android.intent.category.LEANBACK_LAUNCHER" />
-        </intent>
-        <intent>
-            <action android:name="android.intent.action.MAIN" />
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent>
-        <intent>
-            <action android:name="android.intent.action.VIEW" />
-            <data android:scheme="market" />
         </intent>
     </queries>
 
@@ -35,26 +34,24 @@
             android:name=".MainActivity"
             android:clearTaskOnLaunch="true"
             android:configChanges="keyboard|keyboardHidden|navigation|orientation|screenSize|screenLayout|smallestScreenSize|uiMode"
+            android:excludeFromRecents="true"
             android:exported="true"
             android:launchMode="singleTask"
+            android:resumeWhilePausing="true"
             android:screenOrientation="landscape"
             android:stateNotNeeded="true">
 
-            <!-- Als Startbildschirm (Home-Taste) wählbar -->
+            <!-- Startbildschirm (Home-Taste) -->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.HOME" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
 
-            <!-- Taucht in der App-Liste des Fernsehers auf -->
+            <!-- Taucht in der App-Liste des Fernsehers auf, falls der Stock-Launcher wieder aktiv ist -->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LEANBACK_LAUNCHER" />
-            </intent-filter>
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
     </application>

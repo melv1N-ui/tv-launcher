@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="space">#05060B</color>
+    <color name="black">#000000</color>
 
     <style name="Theme.TvLauncher" parent="android:Theme.Material.NoActionBar">
-        <item name="android:windowBackground">@color/space</item>
+        <item name="android:windowBackground">@color/black</item>
         <item name="android:windowFullscreen">true</item>
         <item name="android:windowShowWallpaper">false</item>
         <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowDisablePreview">false</item>
     </style>
 </resources>
