@@ -1,0 +1,12 @@
+{
+  "name": "rift-remote",
+  "version": "1.0.0",
+  "description": "League of Legends vom Handy steuern: Match annehmen, Champ Select, Queue.",
+  "private": true,
+  "main": "server.js",
+  "engines": { "node": ">=18" },
+  "scripts": {
+    "start": "node server.js",
+    "demo": "node server.js --demo"
+  }
+}

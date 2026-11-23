@@ -55,3 +55,8 @@ gradle :app:assembleRelease
 
 Der Signaturschlüssel `app/tvlauncher.jks` liegt bewusst im Repo, damit jede neue APK ein Update der alten ist.
 Für eine private Sideload-App reicht das.
+
+## Weiteres Projekt: Rift Remote
+
+Im Ordner [`league-companion/`](league-companion/README.md) liegt eine Handy-Fernbedienung für League of Legends
+(Match annehmen, Champ Select, Queue). Läuft auf dem PC mit Node.js, siehe dortiges README.

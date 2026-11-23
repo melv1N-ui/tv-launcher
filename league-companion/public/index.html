@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+  <meta name="theme-color" content="#0b0814">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Rift Remote">
+  <title>Rift Remote</title>
+  <link rel="manifest" href="/manifest.webmanifest">
+  <link rel="icon" href="/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/icon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <div class="bg" aria-hidden="true"><div class="orb"></div><div class="grid-floor"></div></div>
+
+  <header class="top">
+    <svg class="logo" viewBox="0 0 64 64" aria-hidden="true">
+      <path d="M32 4 56 18v28L32 60 8 46V18z" fill="none" stroke="currentColor" stroke-width="3"/>
+      <path d="M32 16 44 32 32 48 20 32z" fill="currentColor" opacity=".9"/>
+      <circle cx="32" cy="32" r="4" fill="#0b0814"/>
+    </svg>
+    <div class="who">
+      <div class="brand">RIFT REMOTE</div>
+      <div class="summoner" id="summoner"></div>
+    </div>
+    <span class="dot" id="dot" title="Verbindung"></span>
+  </header>
+
+  <main id="view"></main>
+
+  <footer class="bottom">
+    <label class="toggle">
+      <input type="checkbox" id="autoAccept">
+      <span class="track"><span class="thumb"></span></span>
+      <span>Auto-Annehmen</span>
+    </label>
+    <span class="demo-tag" id="demoTag" hidden>DEMO</span>
+  </footer>
+
+  <div class="sheet" id="sheet" hidden>
+    <div class="sheet-card">
+      <div class="sheet-title" id="sheetTitle"></div>
+      <div class="sheet-grid" id="sheetGrid"></div>
+      <button class="btn ghost" id="sheetClose">Schließen</button>
+    </div>
+  </div>
+
+  <div class="toast" id="toast" role="status" hidden></div>
+
+  <script src="/app.js"></script>
+</body>
+</html>
